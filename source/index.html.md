@@ -12,12 +12,13 @@ toc_footers:
 includes:
   - automotive
   - rftransceiver
+  - zigbee
   - errors
 
 search: true
 ---
 
-# Introduction API v0.0.2
+# Introduction API v0.0.3
 
 This is the Metasploit Hardware Bridge API.  The Hardware bridge enables metasploit to interact with physical
 hardware in an effort to perform security testing on non-ethernet based systems.  The focus of this documentation
@@ -190,6 +191,20 @@ Specifics of the devices capabilities can be reported through this hash.  For in
 a device that supports different types of buses or hardware interfaces they can be returned through
 this method.  These capabilities are used by modules to determine which types are supported on this
 device.
+
+### Multiple Devices and Hardware Versions
+
+Note: New as of API 0.0.3
+
+Whent there is more than one device attached to a relay and you want to report all the different
+hardware versions and device names you will return a string seperated by commas for each device.  The order of the array
+should match those reported by the extentions supported_XXX command.  For instance, the first
+device returned from supported_devices (Zigbee) would match the first device in the list.
+
+Parameter | Default | Description
+--------- | ------- | -----------
+hw_version | "035, 034" | Returning more than one connect device with differeing versions
+device_name | "KILLERB001, KILLERB001" | Return two device names for each connect device
 
 Some capabilities are have special meaning:
 
